@@ -19,6 +19,10 @@ app.configure('production', function(){
     app.use(express.errorHandler());
 });
 
+// Set up session
+app.use(express.cookieParser());
+app.use(express.session({secret: 'pwewifhwliuqrgayou314o247t7359gh7989'}));
+
 // we serve static files under /static
 app.use('/static', express.static(config.webRoot));
 
@@ -31,9 +35,9 @@ db.on('open', function() {
 });
 
 // set up the hello api
-var answer   = require('./routes/answer')();
+var answer = require('./routes/answer')();
 
-app.post('/api/answer', answer.postAnswer); // Change to post, idgit
+app.get('/api/answer', answer.postAnswer); // Change to post, idgit
 
 // all other requests are redirected to our index.html file
 app.get('*', function(req, res) {

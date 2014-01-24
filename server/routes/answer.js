@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    server   = require('../server.js');
+    server   = require('../server.js'),
+    user     = require('../helpers/JAMUser.js');
     
 /**
  * Answer route.
@@ -24,6 +25,8 @@ var answer = function() {
          * @param res
          */
         postAnswer: function(req, res) {
+            
+            var currUser = user(req); // Current user
             
             var question = req.query.question;
             var answer = req.query.answer;
@@ -72,13 +75,34 @@ var answer = function() {
                     total++;
                 });
                 
-                // Convert to %
+                var winning = null;
                 for(var a in results) {
+                    // Convert to %
                     results[a] = Math.round( (results[a] / total)*100 );
+                    
+                    // And calculate the winning result
+                    if (!winning || winning.p < results[a]) {
+                        winning = {
+                            p: results[a],
+                            name: a
+                        }
+                    }
                 }
                 
                 
-                res.send( results );
+                if ( !winning || winning.name == answer ) {
+                    // We have a winner!
+                    currUser.score++;
+                }
+                
+                // TODO: Do this as own object
+                var standardizedRequest = {
+                    results: results,
+                    user: currUser
+                }
+                
+                
+                res.send( standardizedRequest );
             });
             
         }
