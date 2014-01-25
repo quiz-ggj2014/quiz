@@ -1,6 +1,8 @@
 (function () {
 
     'use strict';
+    
+    var answerObjects = [];
 
     /**
      * Shuffles the given array using "Fisher-Yates".
@@ -56,6 +58,7 @@
     };
 
     Quiz.prototype.selectAnswer = function(index) {
+        
         console.log('answer %d selected', index);
     };
 
@@ -69,7 +72,10 @@
             quiz.next();
         }, this);
 
-        this.game.add.text(x + 10, y + 10, value, style);
+        answerObjects.push(sprite);
+        answerObjects.push(
+            this.game.add.text(x + 10, y + 10, value, style)
+        );
     };
 
     /**
@@ -87,6 +93,15 @@
      * @param {Object} question
      */
     UserInterface.prototype.renderQuestion = function(question, quiz) {
+        
+        // Clear old entrys
+        while(answerObjects.length) {
+            var obj = answerObjects.pop();
+            
+            // TODO: Make objects reusable
+            obj.destroy();
+        }
+        
         var center = {x: this.game.world.centerX, y: this.game.world.centerY},
             x = center.x - 300,
             startY = center.y + 100,
@@ -95,11 +110,13 @@
             padding = 10,
             answers = [];
 
-        this.game.add.text(center.x - 300 + padding, center.y + 30 + padding, question.text, style);
+        answerObjects.push(
+            this.game.add.text(center.x - 300 + padding, center.y + 30 + padding, question.text, style)
+        );
 
         for (var i = 0, l = question.answers.length; i < l; i++) {
             answers.push(new Answer(x, y, i, question.answers[i], style, quiz, this.game));
-
+            
             if (i === 1) {
                 x += 320;
                 y = startY;
@@ -107,6 +124,7 @@
                 y += 70;
             }
         }
+        
     };
 
     var questions = [
