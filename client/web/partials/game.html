@@ -1,34 +1,35 @@
-<div class="container">
-  <div class="col-md-6 col-md-push-3">
-    <div class="userinfo">
-      <div class="row">
-        <div class="col-xs-6">
-          <span class="username">
-            {{username}}
-          </span>
-        </div>
-        <div class="col-xs-6">
-          <span class="userscore">
-            Score: {{score}}
-          </span>
+<div class="game">
+  <div class="container">
+    <div class="col-md-6 col-md-push-3">
+      <div class="userinfo">
+        <div class="row">
+          <div class="col-xs-6">
+            <span class="username">
+            </span>
+          </div>
+          <div class="col-xs-6">
+            <span class="userscore">
+              Score: {{score}}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="question">
-      <img class="question-image" src="{{question.src}}" id="image"/>
-      <p class="question-text" id="question">{{question.text}}</p>
-      <ul class="question-answers">
-        <li ng-repeat="answer in question.answers">
-          <div class="row">
-            <div class="col-xs-10">
-            <button class="answer-button" ng-click="selectAnswer(question._id, answer._id)">{{answer.text}}</button>
+      <div class="question">
+        <img class="question-image" src="{{question.src}}" id="image"/>
+        <p class="question-text" id="question">{{question.text}}</p>
+        <ul class="question-answers">
+          <li ng-repeat="answer in question.answers">
+            <div class="row">
+              <div class="col-xs-10">
+              <button class="answer-button" ng-click="selectAnswer(question._id, answer._id)">{{answer.text}}</button>
+              </div>
+              <div class="col-xs-2">
+                <div class="answer-percentage">{{answer.percentAnswered !== undefined ? answer.percentAnswered + '%' : ''}}</div>
+              </div>
             </div>
-            <div class="col-xs-2">
-              <div class="answer-percentage">{{answer.percentAnswered}}</div>
-            </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

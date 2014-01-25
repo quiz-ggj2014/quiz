@@ -1,9 +1,7 @@
-angular.module('Quiz').controller('GameCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$timeout', function($scope, $state, $http, $timeout) {
 
-    
     var buttonsDisabled = false;
     
-    $scope.username = 'Foo';
     $scope.score = 0;
     
     // load the questions.
@@ -16,13 +14,11 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$http', '$timeout', fu
              * Displays the next question.
              */
             var nextQuestion = function() {
-                
                 if (questions.length) {
-                    var next = questions.pop();
-                    $scope.question = next;
+                    $scope.question = questions.pop();
                     buttonsDisabled = false;
                 } else {
-                    // todo: end the game
+                    $state.go('win');
                 }
             };
             
@@ -30,16 +26,17 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$http', '$timeout', fu
             * Invoked when an answer is selected.
             */
             $scope.selectAnswer = function(questionId, answer) {
+                if (buttonsDisabled) {
+                    return;
+                }
+
                 // save the answer to the server.
                 buttonsDisabled = true;
                 
                 $http.post("/api/answer", {question: questionId, answer: answer})
                     .success(function(res) {
-                        console.log(res);
-        
-                        // todo: display the percentages
-        
                         $scope.score = res.data.user.score;
+
                         for(var i = 0; i < res.data.answers.length; i++) {
                             for (var j = 0; j < $scope.question.answers.length; j++) {
                                 if (res.data.answers[i]._id == $scope.question.answers[j]._id) {
