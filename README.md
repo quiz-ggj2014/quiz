@@ -12,4 +12,5 @@ http://95.85.23.90:8000/api/question?question=What is this%3F&answers[]=A flock 
 http://95.85.23.90:8000/api/question?question=What are these%3F&answers[]=Two straws&answers[]=Light sabers. Swooosh!&answers[]=Party lights. Party party!!&answers[]=Laser beams from alien ships.&src=/game/img/questionimages/lights.png&type=image
 http://95.85.23.90:8000/api/question?question=Why am I angry%3F&answers[]=The little bird is pecking my ear.&answers[]=It's so damn cold!&answers[]=Neighbor's kids egged my window.&answers[]=I'm not angry. I'm happy.&src=/game/img/questionimages/mummeli3.png&type=image
 http://95.85.23.90:8000/api/question?question=What is this alien going to say to you%3F&answers[]=Human, take me to your leader.&answers[]=I came to suck your brains.&answers[]=I bring a message of love and hope.&answers[]=I came here to take your job.&src=/game/img/questionimages/alien2.png&type=image
+http://95.85.23.90:8000/api/question?question=U MAD BRO?%3F&answers[]=YES!!!&answers[]=Yes!&answers[]=Yes.&answers[]=Wait, what?&src=/game/img/questionimages/umad.gif&type=image
 
