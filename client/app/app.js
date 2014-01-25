@@ -6,9 +6,15 @@ angular.module('Quiz', ['ui.router'])
         $urlRouterProvider.otherwise('game');
 
         // define ui states.
-        $stateProvider.state('game', {
-            url: '/game',
-            templateUrl: 'static/partials/game.html',
-            controller: 'GameCtrl'
-        })
+        $stateProvider
+            .state('game', {
+                url: '/game',
+                templateUrl: 'static/partials/game.html',
+                controller: 'GameCtrl'
+            })
+            .state('win', {
+                url: '/win',
+                templateUrl: 'static/partials/win.html',
+                controller: 'WinCtrl'
+            });
     }]);
