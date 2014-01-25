@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     server   = require('../server.js'),
-    user     = require('../helpers/JAMUser.js');
+    user     = require('../helpers/JAMUser.js'),
+    model    = require('../models/models.js');
+    
     
 /**
  * Answer route.
@@ -14,10 +16,6 @@ var answer = function() {
         answer: String
     });
 
-    
-    // Our beautiful Model. Bujah!
-    var Answer = mongoose.model('Profile', answerSchema);
-
     return {
         /**
          *
@@ -28,8 +26,8 @@ var answer = function() {
             
             var currUser = user(req); // Current user
             
-            var question = req.query.question;
-            var answer = req.query.answer;
+            var question = req.body.question;
+            var answer = req.body.answer;
             
             // Validate response
             if ( typeof( question ) == "undefined" || typeof( answer ) == "undefined" ) {
@@ -38,7 +36,7 @@ var answer = function() {
             }
             
             // Save answer
-            var myAnswer = new Answer({
+            var myAnswer = new model.Answer({
                 question: question,
                 answer: answer
             });
@@ -56,7 +54,8 @@ var answer = function() {
              * procedural kind of thingie.
              **/
             
-            Answer.find({ question: question }, function(err, answers) {
+            // TODO: Change to Answer.count
+            model.Answer.find({ question: question }, function(err, answers) {
                 if (err) {
                     res.status(500).send("Something wrong with saving data :(");
                     console.log(err);

@@ -3,6 +3,7 @@
     'use strict';
     
     var answerObjects = [];
+    var currentQuestion = null;
 
     /**
      * Shuffles the given array using "Fisher-Yates".
@@ -40,9 +41,39 @@
      * Starts the quiz.
      */
     Quiz.prototype.start = function() {
+        // Create named store for common objects
+        // for easy acceess
+        this.commonObjects = {};
+        
+        this.score.init(this);
         this.questions = shuffle(this.questions);
         this.next();
     };
+    
+    /**
+     * Scroe handler,
+     * (run on strartup)
+     **/
+    Quiz.prototype.score = (function() {
+        
+        function Score() {
+            this._score = 0;
+        }
+        
+        Score.prototype.init = function(quiz) {
+            this.quiz = quiz; // For easy access
+            this.scoreHolder = quiz.game.add.text(0,0,"Loading score...", {font: '28px Arial', fill: '#ffffff', align: 'left'});
+            
+            // TODO: Load score from server here
+        }
+        
+        Score.prototype.setScore = function(newScore) {
+            this._score = newScore;
+            this.scoreHolder.content = "Score: " + newScore;
+        }
+        
+        return new Score();
+    })();
 
     /**
      * Presents the next question.
@@ -52,13 +83,21 @@
             var question = this.questions.pop();
             question.answers = shuffle(question.answers);
             this.ui.renderQuestion(question, this);
+            
+            currentQuestion = question;
         } else {
             console.debug('no more questions');
         }
     };
 
     Quiz.prototype.selectAnswer = function(index) {
-        
+        $.post('/api/answer', {
+            question: currentQuestion.text,
+            answer: currentQuestion.answers[index]
+        }, function(data) {
+            console.log("GOT DATA", data);
+            handleJSONResponse(data);
+        }, "json");
         console.log('answer %d selected', index);
     };
 
@@ -180,6 +219,13 @@
         console.log('preload done ...');
     };
 
+    var handleJSONResponse = function(data) {
+        if (data.user && data.user.score) {
+            quiz.score.setScore(data.user.score);
+        }
+    };
+    
+    
     var quiz, ui;
 
     /**

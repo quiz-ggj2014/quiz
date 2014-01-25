@@ -37,7 +37,7 @@ db.on('open', function() {
 // set up the hello api
 var answer = require('./routes/answer')();
 
-app.get('/api/answer', answer.postAnswer); // Change to post, idgit
+app.post('/api/answer', answer.postAnswer); // Change to post, idgit
 
 // all other requests are redirected to our index.html file
 app.get('*', function(req, res) {
