@@ -1,0 +1,32 @@
+{
+  "name": "quiz-client",
+  "version": "0.1.0",
+  "description": "Quiz game developed for Global game jam 2014.",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/quiz-ggj2014/quiz"
+  },
+  "keywords": [
+    "quiz",
+    "ggj",
+    "game",
+    "client"
+  ],
+  "authors": [
+    "ChristofferNiska@gmail.com"
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/quiz-ggj2014/quiz/issues"
+  },
+  "homepage": "https://github.com/quiz-ggj2014/quiz",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "load-grunt-tasks": "~0.2.1"
+  }
+}

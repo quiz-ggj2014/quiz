@@ -1,0 +1,53 @@
+@import "../lib/bootstrap/less/bootstrap";
+@import "custom-variables";
+
+.quiz {
+  .userinfo {
+    .clearfix();
+    font-size: 24px;
+    margin: 20px 0;
+  }
+
+  .userscore {
+    .pull-right;
+  }
+
+  .question {
+    margin-bottom: 20px;
+  }
+
+  .question-image {
+    background-size: cover;
+    max-width: 540px;
+    margin-bottom: 10px;
+  }
+
+  .question-text {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  .question-answers {
+    .list-unstyled;
+
+    > li {
+      margin-bottom: 5px;
+    }
+  }
+
+  .answer-button {
+    .btn;
+    .btn-primary;
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
+
+  .answer-percentage {
+    padding: 6px 12px;
+  }
+}
+
+.btn {
+  border-radius: 0;
+}
