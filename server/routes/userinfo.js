@@ -26,6 +26,12 @@ var userinfo = function() {
             
             res.send( standardizedRequest );
             
+        },
+        
+        clear: function(req, res) {
+            
+            req.session.user = null;
+            res.send( { success: true } );
         }
     }
 };

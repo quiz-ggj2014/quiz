@@ -44,6 +44,10 @@ app.post('/api/answer', answer.postAnswer);
 app.get('/api/question', answer.postQuestion);
 app.get('/api/questions', answer.getQuestions);
 app.get('/api/userinfo', userinfo.get);
+app.get('/api/userinfo/clear', userinfo.clear);
+
+
+
 
 // all other requests are redirected to our index.html file
 app.get('*', function(req, res) {

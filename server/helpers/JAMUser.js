@@ -7,7 +7,7 @@ var JAMUser = (function() {
 })();
 
 var user = function(req) {
-    if ( typeof( req.session.user ) == "undefined" ) {
+    if ( typeof( req.session.user ) == "undefined" || req.session.user == null ) {
         req.session.user = new JAMUser();
     }
     

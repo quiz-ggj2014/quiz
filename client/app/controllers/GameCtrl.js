@@ -7,6 +7,7 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$http', '$timeout', fu
     $scope.score = 0;
     
     // load the questions.
+    $http.get("/api/userinfo/clear");
     $http.get("/api/questions")
         .success(function(res) {
             var questions = res.data.questions;
