@@ -48,6 +48,7 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
         
                         // wait a while and display the next question.
                         $timeout(function() {
+                            $scope.question.src = "";
                             nextQuestion();
                         }, 3000);
                     })
