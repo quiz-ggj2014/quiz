@@ -1,9 +1,16 @@
-var mongoose = require('mongoose'),
-    Answer   = require('../models/answer.js');
+var mongoose = require('mongoose');
+
+var answerSchema = mongoose.Schema({
+    answer: String,
+    numAnswered: Number,
+    percentAnswered: Number
+});
 
 var questionSchema = mongoose.Schema({
     question: String,
-    answers: Array,
+    type: String,
+    src: String,
+    answers: { type: mongoose.Schema.ObjectId, ref: 'answerSchema' },
     numAnswered: Number
 });
 

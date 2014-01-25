@@ -5,9 +5,9 @@
  **/
 
 module.exports = (function() {
-    function Response(user, results) {
-        this.user = user;
-        if( typeof(results) != "undefined" ) this.results = results;
+    function Response(data) {
+        this.success = true;
+        if( typeof(data) != "undefined" ) this.data = data;
     }
     
     return Response;
