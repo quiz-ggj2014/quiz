@@ -65,6 +65,9 @@
             this.scoreHolder = quiz.game.add.text(0,0,"Loading score...", {font: '28px Arial', fill: '#ffffff', align: 'left'});
             
             // TODO: Load score from server here
+            $.get('/api/userinfo', function(data) {
+                handleJSONResponse(data);
+            });
         }
         
         Score.prototype.setScore = function(newScore) {
@@ -220,7 +223,7 @@
     };
 
     var handleJSONResponse = function(data) {
-        if (data.user && data.user.score) {
+        if (data.user && typeof( data.user.score ) == "number") {
             quiz.score.setScore(data.user.score);
         }
     };

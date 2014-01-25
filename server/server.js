@@ -34,10 +34,12 @@ db.on('open', function() {
     console.log('connected to database.');
 });
 
-// set up the hello api
-var answer = require('./routes/answer')();
+// set up the quiz
+var answer   = require('./routes/answer')(),
+    userinfo = require('./routes/userinfo')();
 
-app.post('/api/answer', answer.postAnswer); // Change to post, idgit
+app.post('/api/answer', answer.postAnswer);
+app.get('/api/userinfo', userinfo.get);
 
 // all other requests are redirected to our index.html file
 app.get('*', function(req, res) {
