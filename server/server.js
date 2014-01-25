@@ -36,9 +36,12 @@ db.on('open', function() {
 
 // set up the quiz
 var answer   = require('./routes/answer')(),
+    question = require('./routes/question')();
     userinfo = require('./routes/userinfo')();
 
 app.post('/api/answer', answer.postAnswer);
+app.post('/api/question', question.postQuestion);
+app.get('/api/questions', question.getQuestions);
 app.get('/api/userinfo', userinfo.get);
 
 // all other requests are redirected to our index.html file

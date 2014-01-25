@@ -1,8 +1,10 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Answer   = require('../models/answer.js');
 
 var questionSchema = mongoose.Schema({
     question: String,
-    answers: Array
+    answers: Array,
+    numAnswered: Number
 });
 
 module.exports = mongoose.model('Question', questionSchema);

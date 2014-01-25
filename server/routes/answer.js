@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     server   = require('../server.js'),
     user     = require('../helpers/JAMUser.js'),
-    model    = require('../models/models.js');
+    model    = require('../models/models.js'),
+    Response = require('../helpers/response.js');
     
     
 /**
@@ -10,11 +11,6 @@ var mongoose = require('mongoose'),
  * @returns {Object}
  */
 var answer = function() {
-
-    var answerSchema = mongoose.Schema({
-        question: String,
-        answer: String
-    });
 
     return {
         /**
@@ -35,73 +31,41 @@ var answer = function() {
                 return;
             }
             
-            // Save answer
-            var myAnswer = new model.Answer({
-                question: question,
-                answer: answer
-            });
-            myAnswer.save(function( err ) {
-                if(err){
-                    console.log("ERROR");
-                    console.log(err);
-                }
-            });
-            
-            /**
-             * There should be no differnece whether we happen to
-             * manage to save out rensponse or not (at this point).
-             * When we have multiplayer, we can change this to more
-             * procedural kind of thingie.
-             **/
-            
-            // TODO: Change to Answer.count
-            model.Answer.find({ question: question }, function(err, answers) {
+            // Get question model
+            model.Question.findOne({ _id: question }, function( err, q ) {
                 if (err) {
-                    res.status(500).send("Something wrong with saving data :(");
+                    res.status(500).send("Something wrong with fetching question :(");
                     console.log(err);
                     return;
                 }
                 
-                var results = {};
-                var total = 0;
-                answers.forEach(function(a) {
-                    var answer = a.answer;
-                    if ( typeof( results[answer] ) == "undefined" ) {
-                        results[answer] = 0;
-                    }
-                    
-                    results[answer]++;
-                    total++;
-                });
-                
-                var winning = null;
-                for(var a in results) {
-                    // Convert to %
-                    results[a] = Math.round( (results[a] / total)*100 );
-                    
-                    // And calculate the winning result
-                    if (!winning || winning.p < results[a]) {
-                        winning = {
-                            p: results[a],
-                            name: a
-                        }
-                    }
+                var results = {
+                    gotPoints: false,
+                    answers: []
                 }
                 
+                var mostAnswered = null;
+                for(var i = 0; i < q.answers.length; i++) {
+                    var a = q.answers[i];
+                    if (a.answer == answer) {
+                        a.numAnswered++;
+                        q.numAnswered++;
+                        a.percentAnswered = Math.round( a.numAnswered / q.numAnswered );
+                        a.save();
+                    }
+                    if (!mostAnswered || a.numAnswered > mostAnswered.numAnswered) {
+                        mostAnswered = a;
+                    }
+                    respoonse.answers.push(a);
+                }
                 
-                if ( !winning || winning.name == answer ) {
-                    // We have a winner!
+                if ( answer == mostAnswered.answer ) {
                     currUser.score++;
+                    results.gotPoints = true;
                 }
                 
-                // TODO: Do this as own object
-                var standardizedRequest = {
-                    results: results,
-                    user: currUser
-                }
+                res.send( new Response( user, results ) );
                 
-                
-                res.send( standardizedRequest );
             });
             
         }

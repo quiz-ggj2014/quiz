@@ -1,4 +1,4 @@
-var user     = require('../helpers/JAMUser.js');
+var user = require('../helpers/JAMUser.js');
     
     
 /**

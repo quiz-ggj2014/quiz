@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 
 var answerSchema = mongoose.Schema({
-    question: String,
-    answer: String
+    answer: String,
+    numAnswered: Number,
+    percentAnswered: Number
 });
 
 module.exports = mongoose.model('Answer', answerSchema);
