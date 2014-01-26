@@ -28,7 +28,7 @@
     position: relative;
     padding: 32px;
     text-align: center;
-    
+
     // No borders on mobile
     @media(max-width: 450px) {
       margin: 0px -30px;
@@ -39,15 +39,25 @@
   }
   
   .question-image {
-    background-size: cover;
-    max-width: 540px;
-    margin-bottom: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     max-width: 100%;
+
+    // No borders on mobile
+    @media(max-width: 450px) {
+      margin-bottom: 20px;
+      position: static;
+    }
   }
 
   .question-text {
     font-size: 36px;
     margin-bottom: 10px;
+
     @media(max-width: 450px) {
       font-size: 20px;
       font-weight: bold;
