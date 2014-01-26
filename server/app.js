@@ -25,6 +25,7 @@ app.use(express.session({secret: 'pwewifhwliuqrgayou314o247t7359gh7989'}));
 
 // we serve static files under /static
 app.use('/static', express.static(config.webRoot));
+app.use('/game', express.static(config.webRoot));
 
 // connect to mongodb
 mongoose.connect('mongodb://localhost/quiz');
