@@ -5,12 +5,14 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
     
     $scope.score = 0;
     
-    // load the questions.
-    $http.get("/api/userinfo/clear");
+    $http.post("/api/player/clear");
+
     $http.get("/api/questions")
         .success(function(res) {
             var questions = res.data.questions;
+
             $scope.score = res.data.user.score;
+
             /**
              * Displays the next question.
              */
@@ -42,7 +44,7 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
                     }
                 }
                 
-                $http.post("/api/answer", {question: questionId, answer: answer})
+                $http.post("/api/question/answer", {question: questionId, answer: answer})
                     .success(function(res) {
                         currScore = $scope.score = res.data.user.score;
 
