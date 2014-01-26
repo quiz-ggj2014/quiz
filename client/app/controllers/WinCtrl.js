@@ -7,6 +7,10 @@ angular.module('Quiz').controller('WinCtrl', ['$scope', function($scope) {
         sound.play();
     };
 
-    playSound('/static/audio/ui/feedback/applauses_short.wav');
+    if (currScore > 0) {
+        playSound('/static/audio/ui/feedback/applauses_short.wav');
+    } else {
+        playSound('/static/audio/effects/orkki_ja_muovikassi.wav');
+    }
 
 }]);
