@@ -1,3 +1,4 @@
+var currScore = 0; // Nyt oiotaan kun on kiire
 angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$timeout', function($scope, $state, $http, $timeout) {
 
     var buttonsDisabled = false;
@@ -43,7 +44,7 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
                 
                 $http.post("/api/answer", {question: questionId, answer: answer})
                     .success(function(res) {
-                        $scope.score = res.data.user.score;
+                        currScore = $scope.score = res.data.user.score;
 
                         for(var i = 0; i < res.data.answers.length; i++) {
                             for (var j = 0; j < $scope.question.answers.length; j++) {
