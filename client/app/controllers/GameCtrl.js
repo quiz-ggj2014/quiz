@@ -4,6 +4,22 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
     var buttonsDisabled = false;
     
     $scope.score = 0;
+    $scope.musicPlaying = false;
+
+    var player = document.getElementById('player');
+
+    $scope.playMusic = function() {
+        player.play();
+        $scope.musicPlaying = true;
+    };
+
+    $scope.stopMusic = function() {
+        player.pause();
+        $scope.musicPlaying = false;
+    };
+
+    // Start the music.
+    $scope.playMusic();
     
     $http.post("/api/player/clear");
 
