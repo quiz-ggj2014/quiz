@@ -6,6 +6,11 @@
     .clearfix();
     font-size: 24px;
     margin: 20px 0;
+
+    @media(max-width: 450px) {
+      margin: 5px 0;
+      font-size: 16px;
+    }
   }
 
   .userscore {
@@ -19,6 +24,11 @@
   .question-media {
     position: relative;
     min-height: 200px;
+    
+    // No borders on mobile
+    @media(max-width: 450px) {
+      margin: 0px -30px;
+    }
   }
   
   .question-image {
@@ -31,6 +41,10 @@
   .question-text {
     font-size: 36px;
     margin-bottom: 10px;
+    @media(max-width: 450px) {
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
 
   .question-answers {
