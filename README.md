@@ -24,5 +24,12 @@ http://95.85.23.90:8000/api/question?question=Which snake could kill you%3F&answ
 http://95.85.23.90:8000/api/question?question=R U MAD%3F&answers[]=Yes?&answers[]=YES!&answers[]=Yes...&answers[]=Yes&src=/game/img/questionimages/umad.gif&type=image
 
 
+http://95.85.23.90:8000/api/question?question=What is my name%3F&answers[]=Tommy&answers[]=Tony&answers[]=Tom&answers[]=Jabba&src=/game/img/questionimages/tomato.gif&type=image
+http://95.85.23.90:8000/api/question?question=I am..&answers[]=An evil elf.&answers[]=A powerful wizard.&answers[]=A dark sorcerer.&answers[]=A fairy king.&src=/game/img/questionimages/evil.png&type=image
+http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=A seashell.&answers[]=An alien face.&answers[]=A fossile.&answers[]=A guy getting beaten.&src=/game/img/questionimages/outo.gif&type=image
 
+
+http://95.85.23.90:8000/api/question?question=What happened?%3F&answers[]=The snake got dinner&answers[]=OMG! A rabbit got killed!&answers[]=Nature happened. That's what.&answers[]=Omnomnomonom.&src=/game/img/questionimages/snake_anim.gif&type=image
+http://95.85.23.90:8000/api/question?question=QQQQQQQ%3F&answers[]=AAAAAAAAAA&answers[]=AAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&src=/game/img/questionimages/IIIIIII.png&type=image
+http://95.85.23.90:8000/api/question?question=QQQQQQQ%3F&answers[]=AAAAAAAAAA&answers[]=AAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&src=/game/img/questionimages/IIIIIII.png&type=image
 http://95.85.23.90:8000/api/question?question=QQQQQQQ%3F&answers[]=AAAAAAAAAA&answers[]=AAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&src=/game/img/questionimages/IIIIIII.png&type=image
