@@ -27,7 +27,7 @@
           <li ng-repeat="answer in question.answers">
             <div class="row">
               <div class="col-xs-10">
-              <button class="answer-button" ng-click="selectAnswer(question._id, answer._id)">{{answer.text}}</button>
+              <button class="answer-button {{answer.clicked}} {{answer.wasright}}" ng-click="selectAnswer(question._id, answer._id)">{{answer.text}}</button>
               </div>
               <div class="col-xs-2">
                 <div class="answer-percentage">{{answer.percentAnswered !== undefined ? answer.percentAnswered + '%' : ''}}</div>

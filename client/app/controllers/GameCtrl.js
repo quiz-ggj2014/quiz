@@ -1,3 +1,4 @@
+var currScore = 0; // Nyt oiotaan kun on kiire
 angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$timeout', function($scope, $state, $http, $timeout) {
 
     var buttonsDisabled = false;
@@ -33,14 +34,26 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
                 // save the answer to the server.
                 buttonsDisabled = true;
                 
+                // Loop trough answers to find out which (total) answer was pressed
+                for (var i = 0; i < $scope.question.answers.length; i++) {
+                    if (answer == $scope.question.answers[i]._id) {
+                        currentAnswer = $scope.question.answers[i].clicked = "clicked";
+                        break;
+                    }
+                }
+                
                 $http.post("/api/answer", {question: questionId, answer: answer})
                     .success(function(res) {
-                        $scope.score = res.data.user.score;
+                        currScore = $scope.score = res.data.user.score;
 
                         for(var i = 0; i < res.data.answers.length; i++) {
                             for (var j = 0; j < $scope.question.answers.length; j++) {
                                 if (res.data.answers[i]._id == $scope.question.answers[j]._id) {
                                     $scope.question.answers[j] = res.data.answers[i];
+                                    if (answer == $scope.question.answers[j]._id) {
+                                        $scope.question.answers[j].clicked = "clicked";
+                                        $scope.question.answers[j].wasright = res.data.wasWinningAnswer ? "winning" : "notwinning";
+                                    }
                                     break;
                                 }
                             }
