@@ -88,20 +88,23 @@ var answer = function() {
             
                 var answers = [];
                 
-                
                 var mostAnswered = null;
+                var wasWinningAnswer = false;
+                
                 for(var i = 0; i < q.answers.length; i++) {
                     var a = q.answers[i];
                     if (a._id == answer) {
                         a.numAnswered += 1;
                         q.numAnswered += 1;
-                        a.percentAnswered = Math.round( (a.numAnswered / q.numAnswered) * 100 );
-                        a.save(function(err, model, numAffected) {
-                            //console.log(arguments);
-                        });
                     }
-                    console.log(q);
+                    // Always update precentages
+                    a.percentAnswered = Math.round( (a.numAnswered / q.numAnswered) * 100 );
+                    a.save(function(err, model, numAffected) {
+                        //console.log(arguments);
+                    });
+                    
                     q.save();
+                    
                     if (!mostAnswered || a.numAnswered > mostAnswered.numAnswered) {
                         mostAnswered = a;
                     }
@@ -110,9 +113,10 @@ var answer = function() {
                 
                 if ( answer == mostAnswered._id ) {
                     req.session.user.score++;
+                    wasWinningAnswer = true;
                 }
                 
-                res.send( new Response( { user: currUser, answers: answers } ));
+                res.send( new Response( { user: currUser, answers: answers, wasWinningAnswer : wasWinningAnswer } ));
                 
             });
             
