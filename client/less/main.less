@@ -55,23 +55,35 @@
     }
   }
 
+  .question-answers li:nth-child(odd) .answer-button {
+    background: #ffb986;
+    &:hover {
+      background: #fdc197;
+      color: #333;
+    }
+  }
   .answer-button {
     .btn;
     .btn-primary;
     display: block;
     text-align: left;
     width: 100%;
+    background: #eeea7c;
+    color: #333;
+    border: 0;
+    &:hover {
+      background: #f3ef7e;
+      color: #333;
+    }
     
     &.clicked {
-      background: #999;
-      border-color: #999;
+      background: #999 !important;
+      color: #FFF;
       &.winning {
         background: #42c314;
-        border-color: #42c314;
       }
       &.notwinning {
         background: #a41a2b;
-        border-color: #a41a2b;
       }
     }
   }
@@ -145,4 +157,12 @@
   margin-left: -20px;
   z-index: -1;
   margin-top: 40px;
+}
+
+body {
+  background: url('/static/img/background_1.png') 50% 50% no-repeat;
+  @media (max-width: 450px) {
+    background: #a09d56;
+  }
+  
 }
