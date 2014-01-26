@@ -4,13 +4,31 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
     var buttonsDisabled = false;
     
     $scope.score = 0;
+    $scope.musicPlaying = false;
+
+    var player = document.getElementById('player');
+
+    $scope.playMusic = function() {
+        player.play();
+        $scope.musicPlaying = true;
+    };
+
+    $scope.stopMusic = function() {
+        player.pause();
+        $scope.musicPlaying = false;
+    };
+
+    // Start the music.
+    $scope.playMusic();
     
-    // load the questions.
-    $http.get("/api/userinfo/clear");
+    $http.post("/api/player/clear");
+
     $http.get("/api/questions")
         .success(function(res) {
             var questions = res.data.questions;
+
             $scope.score = res.data.user.score;
+
             /**
              * Displays the next question.
              */
@@ -42,7 +60,7 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
                     }
                 }
                 
-                $http.post("/api/answer", {question: questionId, answer: answer})
+                $http.post("/api/question/answer", {question: questionId, answer: answer})
                     .success(function(res) {
                         currScore = $scope.score = res.data.user.score;
 
