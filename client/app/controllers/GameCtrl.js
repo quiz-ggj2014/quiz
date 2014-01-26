@@ -48,6 +48,10 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
         
                         // wait a while and display the next question.
                         $timeout(function() {
+                            // Make sure image gets cleared
+                            $scope.question.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7";
+                        }, 2800);
+                        $timeout(function() {
                             nextQuestion();
                         }, 3000);
                     })
