@@ -8,11 +8,11 @@ Creative Commons (see license.txt)
 
 Authors:
 -----
-Christoffer Niska - Code
-Jesse Luoto -  Code
-Goran Maconi - Graphics and animation
-Ari Huotari - Graphics and animation
-Ville Touronen - Sound and music
+- Christoffer Niska - Code
+- Jesse Luoto -  Code
+- Goran Maconi - Graphics and animation
+- Ari Huotari - Graphics and animation
+- Ville Touronen - Sound and music
 
 
 Installation:
