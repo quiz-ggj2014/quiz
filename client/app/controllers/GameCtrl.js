@@ -1,4 +1,5 @@
 var currScore = 0; // Nyt oiotaan kun on kiire
+
 angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$timeout', function($scope, $state, $http, $timeout) {
 
     var buttonsDisabled = false;
@@ -16,6 +17,11 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
     $scope.stopMusic = function() {
         player.pause();
         $scope.musicPlaying = false;
+    };
+
+    var playSound = function(src) {
+        var sound = new Audio(src);
+        sound.play();
     };
 
     // Start the music.
@@ -51,6 +57,8 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
 
                 // save the answer to the server.
                 buttonsDisabled = true;
+
+                playSound('/static/audio/ui/click/click.wav');
                 
                 // Loop trough answers to find out which (total) answer was pressed
                 for (var i = 0; i < $scope.question.answers.length; i++) {
@@ -75,6 +83,12 @@ angular.module('Quiz').controller('GameCtrl', ['$scope', '$state', '$http', '$ti
                                     break;
                                 }
                             }
+                        }
+
+                        if (res.data.wasWinningAnswer) {
+                            playSound('/static/audio/ui/feedback/Synth_Success.wav');
+                        } else {
+                            playSound('/static/audio/ui/feedback/Synth_NotSoGood.wav');
                         }
         
                         // wait a while and display the next question.
