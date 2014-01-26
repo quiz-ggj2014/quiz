@@ -1,11 +1,37 @@
+Ultimate quiz!
+--------------
+Just another FGJ2014 game
+
+License:
+-----
+Creative Commons (see license.txt)
+
+Authors:
+-----
+Christoffer Niska - Code
+Jesse Luoto -  Code
+Goran Maconi - Graphics and animation
+Ari Huotari - Graphics and animation
+Ville Touronen - Sound and music
+
+
+Installation:
+-----
+
+- Install node npm and global grunt
+- Run `npm install` on folders `client/` and `server/`
+- Run `grunt concat less` on `client/`
+- Run `node server/app.js`
+- All done! The game runs on http://localhost:8000/
+
 Test data:
+```
 http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=Bat&answers[]=Butterfly&answers[]=Moth&src=/game/img/questionimages/Rorschach_blot_01.jpg&type=image
 http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=Two humans&answers[]=Dog&answers[]=Elephant&answers[]=Bear&src=/game/img/questionimages/Rorschach_blot_02.jpg&type=image
 http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=Hideout&answers[]=Skin&answers[]=Rug&src=/game/img/questionimages/Rorschach_blot_04.jpg&type=image
 http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=Bat&answers[]=Butterfly&answers[]=Moth&src=/game/img/questionimages/Rorschach_blot_05.jpg&type=image
 http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=Hideout&answers[]=Skin&answers[]=Rug&src=/game/img/questionimages/Rorschach_blot_06.jpg&type=image
 http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=Crab&answers[]=Lobster&answers[]=Spider&answers[]=Rabbit&src=/game/img/questionimages/Rorschach_blot_10.jpg&type=image
-
 
 http://95.85.23.90:8000/api/question?question=What does the dragon think%3F&answers[]=I'm gonna burn down that village and eat all the humans!&answers[]=Gold, preciousss...&answers[]=Roaaaaargh!&answers[]=The troll I ate gives me gas.&src=/game/img/questionimages/dragon3.png&type=image
 http://95.85.23.90:8000/api/question?question=What is this%3F&answers[]=A flock of birds&answers[]=A flock of butterflies&answers[]=Leaves in the wind&answers[]=Lots of wasps! Eeeek!&src=/game/img/questionimages/parvi.png&type=image
@@ -23,13 +49,9 @@ http://95.85.23.90:8000/api/question?question=What is he listening%3F&answers[]=
 http://95.85.23.90:8000/api/question?question=Which snake could kill you%3F&answers[]=Red snake&answers[]=Yellow anke&answers[]=Blue snake&answers[]=Green snake&src=/game/img/questionimages/snakes_anim.gif&type=image
 http://95.85.23.90:8000/api/question?question=R U MAD%3F&answers[]=Yes?&answers[]=YES!&answers[]=Yes...&answers[]=Yes&src=/game/img/questionimages/umad.gif&type=image
 
-
 http://95.85.23.90:8000/api/question?question=What is my name%3F&answers[]=Tommy&answers[]=Tony&answers[]=Tom&answers[]=Jabba&src=/game/img/questionimages/tomato.gif&type=image
 http://95.85.23.90:8000/api/question?question=I am..&answers[]=An evil elf.&answers[]=A powerful wizard.&answers[]=A dark sorcerer.&answers[]=A fairy king.&src=/game/img/questionimages/evil.png&type=image
 http://95.85.23.90:8000/api/question?question=What do you see%3F&answers[]=A seashell.&answers[]=An alien face.&answers[]=A fossile.&answers[]=A guy getting beaten.&src=/game/img/questionimages/outo.gif&type=image
 
-
 http://95.85.23.90:8000/api/question?question=What happened?%3F&answers[]=The snake got dinner&answers[]=OMG! A rabbit got killed!&answers[]=Nature happened. That's what.&answers[]=Omnomnomonom.&src=/game/img/questionimages/snake_anim.gif&type=image
-http://95.85.23.90:8000/api/question?question=QQQQQQQ%3F&answers[]=AAAAAAAAAA&answers[]=AAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&src=/game/img/questionimages/IIIIIII.png&type=image
-http://95.85.23.90:8000/api/question?question=QQQQQQQ%3F&answers[]=AAAAAAAAAA&answers[]=AAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&src=/game/img/questionimages/IIIIIII.png&type=image
-http://95.85.23.90:8000/api/question?question=QQQQQQQ%3F&answers[]=AAAAAAAAAA&answers[]=AAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&answers[]=AAAAAAAAAAAAA&src=/game/img/questionimages/IIIIIII.png&type=image
+```
