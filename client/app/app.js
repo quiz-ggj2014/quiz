@@ -3,12 +3,17 @@ angular.module('Quiz', ['ui.router'])
         $locationProvider.html5Mode(true);
 
         // all unmatched urls are sent to the game.
-        $urlRouterProvider.otherwise('game');
+        $urlRouterProvider.otherwise('play');
 
         // define ui states.
         $stateProvider
+            .state('start', {
+                url: '/start',
+                templateUrl: 'static/partials/start.html',
+                controller: 'StartCtrl'
+            })
             .state('game', {
-                url: '/game',
+                url: '/play',
                 templateUrl: 'static/partials/game.html',
                 controller: 'GameCtrl'
             })
